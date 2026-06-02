@@ -1,26 +1,193 @@
+/* Optional: match Stitch/SDD typography (fallbacks if not installed via next/font) */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap");
+
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Convish design fundamentals (tokens) */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    /* --- Fonts --- */
+    --font-body: var(--font-geist-sans), Inter, ui-sans-serif, system-ui, sans-serif;
+    --font-display: "DM Sans", var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    --font-mono: var(--font-geist-mono), "JetBrains Mono", ui-monospace, SFMono-Regular,
+      Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    /* --- Spacing scale (px) --- */
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-48: 48px;
+
+    /* --- Radius --- */
+    --radius: 12px;
+
+    /* --- Light theme (SDD) - stored as HSL triplets for shadcn/tailwind --- */
+    --background: 210 40% 98%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --primary: 243.4 75.4% 58.6%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 244.5 57.9% 50.6%;
+    --primary-tint: 225.9 100% 96.7%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 215.3 19.3% 34.5%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.3 19.3% 34.5%;
+
+    --accent: 225.9 100% 96.7%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 243.4 75.4% 58.6%;
+
+    /* --- Status / semantic --- */
+    --success: 160.1 84.1% 39.4%;
+    --warning: 37.7 92.1% 50.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --info: 217.2 91.2% 59.8%;
+
+    /* --- Premium surfaces (used heavily in Stitch) --- */
+    --surface: 0 0% 100%;
+    --surface-elevated: 210 40% 96.1%;
+    --surface-dim: 210 40% 98%;
+    --text-primary: 222.2 47.4% 11.2%;
+    --text-secondary: 215.3 19.3% 34.5%;
+    --text-muted: 215 20.2% 65.1%;
+
+    /* --- Pipeline stage colors (badge/background) --- */
+    --stage-request-sent: 215.3 19.3% 34.5%;
+    --stage-connected: 217.2 91.2% 59.8%;
+    --stage-conversation-started: 262.1 83.3% 66.7%;
+    --stage-warm-lead: 37.7 92.1% 50.2%;
+    --stage-follow-up-needed: 0 84.2% 60.2%;
+    --stage-client: 160.1 84.1% 39.4%;
+    --stage-closed: 215 20.2% 65.1%;
+  }
+
+  .dark {
+    /* --- Dark theme (Stitch) --- */
+    --background: 224 33.3% 8.8%;
+    --foreground: 210 20% 98%;
+
+    --card: 220.9 39.3% 11%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 220.9 39.3% 11%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 239 100% 87.6%;
+    --primary-foreground: 239.1 63.2% 18%;
+    --primary-hover: 238.6 100% 75.1%;
+    --primary-tint: 243.8 47.1% 20%;
+
+    --secondary: 222.9 25.9% 15.9%;
+    --secondary-foreground: 217.9 10.6% 64.9%;
+
+    --muted: 222.9 25.9% 15.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 222.9 25.9% 15.9%;
+    --accent-foreground: 210 20% 98%;
+
+    --border: 215 27.9% 16.9%;
+    --input: 215 27.9% 16.9%;
+    --ring: 238.6 100% 75.1%;
+
+    --success: 160.1 84.1% 39.4%;
+    --warning: 37.7 92.1% 50.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --info: 217.2 91.2% 59.8%;
+
+    --surface: 220.9 39.3% 11%;
+    --surface-elevated: 222.9 25.9% 15.9%;
+    --surface-dim: 224 33.3% 8.8%;
+    --text-primary: 210 20% 98%;
+    --text-secondary: 217.9 10.6% 64.9%;
+    --text-muted: 220 8.9% 46.1%;
+
+    /* Stage colors match Stitch */
+    --stage-request-sent: 213.3 23% 47.6%;
+    --stage-connected: 217.2 91.2% 59.8%;
+    --stage-conversation-started: 262.1 83.3% 66.7%;
+    --stage-warm-lead: 37.7 92.1% 50.2%;
+    --stage-follow-up-needed: 0 84.2% 60.2%;
+    --stage-client: 160.1 84.1% 39.4%;
+    --stage-closed: 217.9 10.6% 64.9%;
+  }
+
+  html {
+    height: 100%;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    min-height: 100%;
+    font-family: var(--font-body);
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Material Symbols baseline (used in Stitch references) */
+  .material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+    line-height: 1;
+    user-select: none;
+    vertical-align: middle;
+  }
+
+  /* --- Typography defaults --- */
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  h1 {
+    font-size: 28px;
+    line-height: 34px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+
+  /* Selection like Stitch */
+  ::selection {
+    background: hsl(var(--primary-hover) / 0.35);
+    color: hsl(var(--primary-foreground));
+  }
 }

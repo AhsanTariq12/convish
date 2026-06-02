@@ -1,0 +1,747 @@
+You are actually at the most important stage now.
+
+Not coding.
+
+Architecture and execution planning.
+
+A lot of developers spend weeks building and then realize:
+
+schema is wrong,
+
+auth is wrong,
+
+routing is messy,
+
+components are duplicated,
+
+AI costs aren't tracked,
+
+billing becomes painful.
+
+You already have:
+
+Figma
+
+Next.js skills
+
+Project idea
+
+Clear MVP
+
+So now the goal is:
+
+build Convish like a real SaaS product, not a portfolio CRUD app.
+
+
+
+Before Writing Any Code
+
+I would answer these questions first:
+
+1. Is Convish MVP single-user only?
+
+Meaning:
+
+Can one account only belong to one person?
+
+Or later:
+
+teams
+
+agencies
+
+multiple members
+
+My recommendation:
+
+Single user.
+
+Do not build multi-tenant teams now.
+
+
+
+2. Free plan limits
+
+Decide now:
+
+Example:
+
+Free:
+
+50 contacts
+
+
+
+Pro:
+
+Unlimited
+
+This affects architecture.
+
+
+
+3. AI Provider
+
+Choose one.
+
+For MVP:
+
+GPT-4.1 Mini
+
+GPT-5 Mini (when available)
+
+No need for multiple providers.
+
+
+
+4. Is PDF Import MVP?
+
+Personally:
+
+NO.
+
+Launch without it.
+
+Build:
+
+manual contact entry
+
+first.
+
+Then add PDF import.
+
+
+
+PHASE 1
+
+Project Initialization
+
+Create project:
+
+npx create-next-app@latest convish
+
+Choose:
+
+TypeScript ✓
+
+Tailwind ✓
+
+ESLint ✓
+
+App Router ✓
+
+src folder ✓
+
+
+
+Install:
+
+npm install @supabase/supabase-js
+
+npm install @supabase/ssr
+
+npm install zod
+
+npm install react-hook-form
+
+npm install @hookform/resolvers
+
+npm install @tanstack/react-query
+
+npm install lucide-react
+
+npm install date-fns
+
+npm install sonner
+
+
+
+Then:
+
+npx shadcn@latest init
+
+
+
+PHASE 2
+
+Setup Supabase FIRST
+
+Do not touch UI yet.
+
+Create:
+
+contacts
+
+activities
+
+reminders
+
+subscriptions
+
+ai_usage
+
+
+
+Enable:
+
+RLS immediately.
+
+Not later.
+
+
+
+Policy:
+
+auth.uid() = user_id
+
+everywhere.
+
+
+
+PHASE 3
+
+Design System Extraction
+
+Open Figma.
+
+Do NOT code screens.
+
+First extract:
+
+Colors
+
+Example:
+
+Primary
+
+Secondary
+
+Success
+
+Danger
+
+Muted
+
+Border
+
+
+
+Typography
+
+H1
+
+H2
+
+H3
+
+Body
+
+Caption
+
+
+
+Spacing
+
+Example:
+
+4
+
+8
+
+12
+
+16
+
+24
+
+32
+
+48
+
+
+
+Then create:
+
+globals.css
+
+tokens.
+
+This prevents UI inconsistency later.
+
+
+
+PHASE 4
+
+Build Layout Only
+
+Not pages.
+
+Only:
+
+Sidebar
+
+Navbar
+
+Content Area
+
+Goal:
+
+Every page should render inside:
+
+DashboardLayout
+
+
+
+Structure:
+
+(app)
+
+
+
+dashboard
+
+contacts
+
+pipeline
+
+reminders
+
+analytics
+
+billing
+
+settings
+
+
+
+PHASE 5
+
+Build Reusable Components
+
+Before pages.
+
+
+
+Examples:
+
+PageHeader
+
+MetricCard
+
+ContactCard
+
+PipelineColumn
+
+ActivityItem
+
+ReminderCard
+
+EmptyState
+
+
+
+Many beginners skip this.
+
+Then duplicate code everywhere.
+
+
+
+PHASE 6
+
+Build Contacts Domain First
+
+The entire app revolves around contacts.
+
+
+
+Build:
+
+Contact Creation
+
+Manual form.
+
+
+
+Use:
+
+React Hook Form
+
+Zod
+
+
+
+Validation:
+
+Name required
+
+LinkedIn URL optional
+
+Company optional
+
+
+
+After submit:
+
+Server Action.
+
+Not client-side fetch.
+
+
+
+PHASE 7
+
+Activities Domain
+
+This is where Convish becomes useful.
+
+
+
+When user:
+
+sends message
+
+receives reply
+
+adds note
+
+create activity.
+
+
+
+Timeline should be:
+
+May 22
+
+Connected
+
+
+
+May 25
+
+Positive response
+
+
+
+May 30
+
+Follow-up scheduled
+
+
+
+Not giant chat history.
+
+
+
+PHASE 8
+
+Reminders Domain
+
+Build this BEFORE pipeline.
+
+Why?
+
+Reminder system is the real value.
+
+
+
+Create:
+
+Create Reminder
+
+Edit Reminder
+
+Mark Complete
+
+
+
+Dashboard should show:
+
+Due Today
+
+Overdue
+
+Upcoming
+
+
+
+PHASE 9
+
+Pipeline Domain
+
+Now build Kanban.
+
+Install:
+
+npm install @dnd-kit/core
+
+npm install @dnd-kit/sortable
+
+
+
+Stages:
+
+Request Sent
+
+Connected
+
+Conversation Started
+
+Warm Lead
+
+Follow Up Needed
+
+Client
+
+Closed
+
+
+
+Drag card.
+
+Update DB.
+
+Optimistic update.
+
+Done.
+
+
+
+PHASE 10
+
+Analytics
+
+Simple first.
+
+
+
+Do NOT build charts immediately.
+
+First:
+
+Total Contacts
+
+
+
+Reply Rate
+
+
+
+Conversion Rate
+
+
+
+Active Follow Ups
+
+
+
+Derived from DB queries.
+
+
+
+Charts later.
+
+
+
+PHASE 11
+
+AI Layer
+
+Now add AI.
+
+Not before.
+
+
+
+Create:
+
+app/api/ai/generate-message
+
+
+
+Input:
+
+{
+
+  "name": "",
+
+  "role": "",
+
+  "company": "",
+
+  "goal": ""
+
+}
+
+
+
+Prompt:
+
+Write a warm professional LinkedIn message.
+
+
+
+Keep it under 80 words.
+
+
+
+Avoid sales language.
+
+
+
+Track usage:
+
+ai_usage
+
+table.
+
+
+
+PHASE 12
+
+Billing
+
+Last.
+
+Never first.
+
+
+
+Stripe:
+
+Free
+
+Pro
+
+
+
+Middleware:
+
+Check subscription.
+
+
+
+Protect:
+
+AI Features
+
+Unlimited Contacts
+
+CSV Export
+
+
+
+AI Tools I Would Use
+
+Maximum leverage.
+
+
+
+Cursor
+
+Primary coding agent.
+
+Use for:
+
+components
+
+forms
+
+CRUD
+
+refactors
+
+
+
+Claude
+
+Architecture reviews.
+
+Prompt:
+
+Review this folder structure like a staff engineer.
+
+
+
+ChatGPT
+
+Feature planning.
+
+Schema review.
+
+Prompt engineering.
+
+
+
+Stitch
+
+Already done.
+
+UI source of truth.
+
+
+
+GitHub Copilot
+
+Optional.
+
+Not necessary if using Cursor.
+
+
+
+Deployment Strategy
+
+Do NOT wait until project completion.
+
+Day 1:
+
+Deploy.
+
+Use:
+
+GitHub
+
+↓
+
+Vercel
+
+Every push:
+
+automatic deployment.
+
+
+
+Professional Build Order
+
+Follow exactly:
+
+1. Next.js Setup
+
+2. Supabase Setup
+
+3. Auth
+
+4. Layout
+
+5. Design Tokens
+
+6. Contacts
+
+7. Activities
+
+8. Reminders
+
+9. Dashboard
+
+10. Pipeline
+
+11. Analytics
+
+12. AI
+
+13. Billing
+
+14. Polish
+
+15. Launch
+
+If you follow this order, you'll avoid 90% of the mistakes that cause SaaS projects to become messy halfway through development.

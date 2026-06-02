@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Convish - Pipeline</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#353945",
+                        "border-subtle": "#1F2937",
+                        "primary-container": "#8083ff",
+                        "on-error": "#690005",
+                        "on-surface": "#dfe2f2",
+                        "primary-fixed": "#e1e0ff",
+                        "surface": "#111827",
+                        "text-secondary": "#9CA3AF",
+                        "stage-green": "#10B981",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#07006c",
+                        "surface-dim": "#0f131e",
+                        "stage-amber": "#F59E0B",
+                        "on-secondary": "#2a3040",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#dfe2f2",
+                        "surface-container-highest": "#313441",
+                        "stage-violet": "#8B5CF6",
+                        "tertiary-container": "#4d8eff",
+                        "background": "#0f131e",
+                        "on-secondary-fixed-variant": "#414657",
+                        "stage-red": "#EF4444",
+                        "surface-container-high": "#262a36",
+                        "on-secondary-container": "#afb5c8",
+                        "on-surface-variant": "#c7c4d7",
+                        "tertiary-fixed": "#d8e2ff",
+                        "surface-container-lowest": "#0a0e19",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "primary": "#c0c1ff",
+                        "surface-container-low": "#171b27",
+                        "secondary": "#c0c6da",
+                        "border-strong": "#374151",
+                        "surface-container": "#1b1f2b",
+                        "on-background": "#dfe2f2",
+                        "on-tertiary": "#002e6a",
+                        "stage-slate": "#64748B",
+                        "secondary-fixed-dim": "#c0c6da",
+                        "tertiary": "#adc6ff",
+                        "outline-variant": "#464554",
+                        "text-muted": "#6B7280",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "surface-elevated": "#1E2433",
+                        "outline": "#908fa0",
+                        "on-primary-container": "#0d0096",
+                        "error-container": "#93000a",
+                        "on-primary": "#1000a9",
+                        "inverse-on-surface": "#2c303c",
+                        "secondary-fixed": "#dde2f7",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "text-primary": "#F9FAFB",
+                        "secondary-container": "#414657",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-tertiary-fixed": "#001a42",
+                        "on-tertiary-container": "#00285d",
+                        "surface-variant": "#313441",
+                        "surface-tint": "#c0c1ff",
+                        "inverse-primary": "#494bd6",
+                        "on-secondary-fixed": "#151b2a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "stack-xs": "4px",
+                        "sidebar-collapsed": "60px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "nav-height": "64px",
+                        "sidebar-width": "240px"
+                    },
+                    "fontFamily": {
+                        "headline-sm": ["DM Sans"],
+                        "mono": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-md": ["DM Sans"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "micro": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "mono": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "body-lg": ["15px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "21px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "micro": ["11px", { "lineHeight": "14px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Hide scrollbar for kanban board but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary antialiased font-body-md h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="fixed left-0 top-0 h-full w-[240px] bg-surface dark:bg-surface border-r border-border-subtle flex flex-col py-stack-lg z-20">
+<!-- Header -->
+<div class="px-stack-lg mb-stack-lg flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary font-bold">C</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Convish</h1>
+<p class="font-micro text-micro text-text-secondary uppercase tracking-wider">Elite CRM</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-stack-md mb-stack-lg">
+<button class="w-full bg-primary text-on-primary py-2 px-4 rounded-lg font-label-sm flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                Add Contact
+            </button>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 px-stack-sm flex flex-col gap-1 overflow-y-auto">
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="group">group</span>
+                Contacts
+            </a>
+<!-- Active Tab -->
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg bg-surface-elevated text-text-primary font-body-md text-body-md active:scale-95 transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_tree" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+                Pipeline
+            </a>
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+                Reminders
+            </a>
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="analytics">analytics</span>
+                Analytics
+            </a>
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="smart_toy">smart_toy</span>
+                AI Assistant
+            </a>
+</div>
+<!-- Footer Tabs -->
+<div class="px-stack-sm mt-auto pt-stack-md border-t border-border-subtle flex flex-col gap-1">
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-stack-sm px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-elevated transition-colors duration-200 font-body-md text-body-md active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+                Help
+            </a>
+</div>
+</nav>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-nav-height bg-surface-dim dark:bg-surface-dim border-b border-border-subtle flex items-center justify-between px-margin-desktop z-10">
+<!-- Search (Left aligned per JSON) -->
+<div class="flex-1 max-w-md">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-text-muted text-[20px]" data-icon="search">search</span>
+<input class="w-full bg-surface border border-border-subtle rounded-lg py-1.5 pl-10 pr-4 text-body-md text-text-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors placeholder-text-muted" placeholder="Search pipeline..." type="text"/>
+</div>
+</div>
+<!-- Trailing Actions & Profile -->
+<div class="flex items-center gap-stack-md">
+<button class="text-text-muted hover:text-text-primary hover:bg-surface-elevated p-2 rounded-full transition-colors active:scale-97">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+</button>
+<button class="text-text-muted hover:text-text-primary hover:bg-surface-elevated p-2 rounded-full transition-colors active:scale-97 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-stage-red rounded-full border border-surface-dim"></span>
+</button>
+<div class="h-6 w-px bg-border-subtle mx-2"></div>
+<button class="flex items-center gap-2 hover:bg-surface-elevated p-1 rounded-lg transition-colors active:scale-97">
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-border-subtle object-cover" data-alt="A close up professional headshot of a young man with short dark hair, wearing a dark blue tailored shirt. The background is a highly blurred, bright modern office setting. The lighting is soft and cinematic, emphasizing a clean, contemporary aesthetic suitable for an elite CRM application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDN17L_SjC4eTP92CKMhFLiiATC4fN7HtE5g6_lBc7o2v6s6DptFhAnd7hoMTYwTtzwgQB192JN-r9LaSxJI8hvnXg9RYiwF1ulvG0zDldOXceilJm40nNZMINjzxslwjdIKqg-WF_po-x8gmfk7-RUCbSvEHpSzMD-8uR8v8QrS4wxVQHdWXICeLWiFz9JIsHVY7aUAgKex7wn3lsbfhOCUhFZshKYOePC0JxJgGAPRRESLcPsEVM2n4VPprCl5XeCy8_WlC2Raz8B"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] mt-[64px] h-[calc(100vh-64px)] flex flex-col bg-background">
+<!-- Page Header Area -->
+<div class="px-margin-desktop py-stack-lg flex-shrink-0 flex items-center justify-between">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Q3 Deal Flow</h2>
+<p class="font-body-md text-body-md text-text-secondary mt-1">Manage active networking opportunities.</p>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-border-subtle rounded-lg text-text-primary hover:bg-surface-elevated transition-colors font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span>
+                    Filter
+                </button>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-surface border border-border-subtle rounded-lg text-text-primary hover:bg-surface-elevated transition-colors font-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="sort">sort</span>
+                    Sort
+                </button>
+</div>
+</div>
+<!-- Kanban Board Area -->
+<div class="flex-1 overflow-x-auto no-scrollbar px-margin-desktop pb-margin-desktop">
+<div class="flex gap-gutter h-full items-start">
+<!-- Column: Connected -->
+<div class="flex-shrink-0 w-[320px] flex flex-col h-full bg-surface-container-lowest rounded-lg border border-border-subtle overflow-hidden">
+<div class="p-3 border-b border-border-subtle bg-surface border-t-2 border-t-stage-amber flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-2">
+<h3 class="font-label-sm text-label-sm uppercase text-text-secondary">Connected</h3>
+<span class="bg-stage-amber/15 text-stage-amber font-mono text-mono px-1.5 py-0.5 rounded">8</span>
+</div>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="more_horiz">more_horiz</span></button>
+</div>
+<div class="p-2 overflow-y-auto flex-1 flex flex-col gap-2">
+<!-- Card 3 -->
+<div class="bg-surface border border-border-subtle rounded-lg p-3 hover:border-border-strong hover:bg-surface-elevated hover:-translate-y-0.5 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-bright flex items-center justify-center text-text-secondary font-label-sm font-bold border border-border-subtle">
+                                        MR
+                                    </div>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary">Michael Ross</div>
+<div class="font-micro text-micro text-text-muted">Pearson Specter</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="font-micro text-micro flex items-center gap-1 text-stage-amber">
+<span class="material-symbols-outlined text-[14px]" data-icon="campaign">campaign</span>
+                                    Follow up today
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Conversation Started -->
+<div class="flex-shrink-0 w-[320px] flex flex-col h-full bg-surface-container-lowest rounded-lg border border-border-subtle overflow-hidden">
+<div class="p-3 border-b border-border-subtle bg-surface border-t-2 border-t-stage-violet flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-2">
+<h3 class="font-label-sm text-label-sm uppercase text-text-secondary">Conv Started</h3>
+<span class="bg-stage-violet/15 text-stage-violet font-mono text-mono px-1.5 py-0.5 rounded">4</span>
+</div>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="more_horiz">more_horiz</span></button>
+</div>
+<div class="p-2 overflow-y-auto flex-1 flex flex-col gap-2">
+<!-- Card 4 -->
+<div class="bg-surface border border-border-subtle rounded-lg p-3 hover:border-border-strong hover:bg-surface-elevated hover:-translate-y-0.5 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-2">
+<img alt="Contact Avatar" class="w-8 h-8 rounded-full border border-border-subtle object-cover" data-alt="A portrait of a male professional in his 30s with short hair and a subtle beard. He is wearing a dark, minimal crewneck sweater. The background is a sleek, out-of-focus modern architectural setting. Dark, moody lighting fitting a high-end minimalist interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmXuZZZxkUXLzK1OPq5PibO6ZS78mDjZV7L-c3NLm0lyKcWY8Rwn3llBd3wwwszOk2KWNYRcchLeL_c4xpdVA5i7PCL1bvbCNGftq2sTf--0I4ywWTquRhXv7sm4sUnn-1ocLDs3j2BFv03hO90grvVMinRoF0ENL2iOasN3-jrftgkm4eYw_-zjeh6x9o3snePAnSq_Da-uHLtWOT7hbz2Ibcm_lsMhmcCYOC3KDbtZRBKbooS0kVF9QQ_475bHPwlIINQFHjAZp5"/>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary">David Chen</div>
+<div class="font-micro text-micro text-text-muted">Global Logistics</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-border-subtle">
+<div class="font-micro text-micro text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="forum">forum</span>
+                                    Discussed Q4 roadmap
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Column: Warm Lead -->
+<div class="flex-shrink-0 w-[320px] flex flex-col h-full bg-surface-container-lowest rounded-lg border border-border-subtle overflow-hidden">
+<div class="p-3 border-b border-border-subtle bg-surface border-t-2 border-t-stage-green flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-2">
+<h3 class="font-label-sm text-label-sm uppercase text-text-secondary">Warm Lead</h3>
+<span class="bg-stage-green/15 text-stage-green font-mono text-mono px-1.5 py-0.5 rounded">2</span>
+</div>
+<button class="text-text-muted hover:text-text-primary"><span class="material-symbols-outlined text-[18px]" data-icon="more_horiz">more_horiz</span></button>
+</div>
+<div class="p-2 overflow-y-auto flex-1 flex flex-col gap-2">
+<!-- Card 5 -->
+<div class="bg-surface border border-border-subtle rounded-lg p-3 hover:border-border-strong hover:bg-surface-elevated hover:-translate-y-0.5 transition-all cursor-grab active:cursor-grabbing group">
+<div class="flex items-start justify-between mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-surface-bright flex items-center justify-center text-text-secondary font-label-sm font-bold border border-border-subtle">
+                                        EP
+                                    </div>
+<div>
+<div class="font-label-sm text-label-sm text-text-primary">Elena Petrova</div>
+<div class="font-micro text-micro text-text-muted">Stark Industries</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-text-muted opacity-0 group-hover:opacity-100 transition-opacity" data-icon="drag_indicator">drag_indicator</span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-border-subtle">
+<div class="font-micro text-micro flex items-center gap-1 text-stage-green">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+                                    Proposal Requested
+                                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer to allow scrolling past the last column slightly -->
+<div class="w-4 flex-shrink-0"></div>
+</div>
+</div>
+</main>
+</body></html>

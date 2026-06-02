@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kinetic Precision CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#414657",
+                        "error": "#ffb4ab",
+                        "surface-container-highest": "#313441",
+                        "stage-slate": "#64748B",
+                        "tertiary": "#adc6ff",
+                        "background": "#0B0F1A",
+                        "surface-tint": "#c0c1ff",
+                        "primary-container": "#8083ff",
+                        "on-primary-fixed": "#07006c",
+                        "inverse-on-surface": "#2c303c",
+                        "surface-container": "#1b1f2b",
+                        "on-primary-container": "#0d0096",
+                        "on-error": "#690005",
+                        "surface-elevated": "#1E2433",
+                        "surface-container-high": "#262a36",
+                        "on-tertiary-fixed": "#001a42",
+                        "error-container": "#93000a",
+                        "stage-violet": "#8B5CF6",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "surface-dim": "#0f131e",
+                        "secondary-fixed": "#dde2f7",
+                        "text-secondary": "#9CA3AF",
+                        "on-tertiary-container": "#00285d",
+                        "inverse-primary": "#494bd6",
+                        "surface": "#111827",
+                        "on-primary": "#1000a9",
+                        "tertiary-container": "#4d8eff",
+                        "surface-container-low": "#171b27",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "text-muted": "#6B7280",
+                        "outline-variant": "#464554",
+                        "tertiary-fixed": "#d8e2ff",
+                        "on-secondary-fixed": "#151b2a",
+                        "on-surface": "#dfe2f2",
+                        "stage-green": "#10B981",
+                        "surface-container-lowest": "#0a0e19",
+                        "on-background": "#dfe2f2",
+                        "inverse-surface": "#dfe2f2",
+                        "stage-red": "#EF4444",
+                        "surface-bright": "#353945",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "border-strong": "#374151",
+                        "on-secondary": "#2a3040",
+                        "on-tertiary": "#002e6a",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "outline": "#908fa0",
+                        "surface-variant": "#313441",
+                        "secondary": "#c0c6da",
+                        "on-surface-variant": "#c7c4d7",
+                        "secondary-fixed-dim": "#c0c6da",
+                        "on-error-container": "#ffdad6",
+                        "stage-amber": "#F59E0B",
+                        "text-primary": "#F9FAFB",
+                        "primary": "#6366F1",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#414657",
+                        "on-secondary-container": "#afb5c8",
+                        "border-subtle": "#1F2937"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Inter", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "headline-sm": ["DM Sans", "sans-serif"],
+                        "headline-md": ["DM Sans", "sans-serif"],
+                        "headline-lg": ["DM Sans", "sans-serif"],
+                        "micro": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+<style>
+        @keyframes reveal-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal {
+            animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+        }
+        .reveal-delay-1 { animation-delay: 0.1s; }
+        .reveal-delay-2 { animation-delay: 0.2s; }
+        .reveal-delay-3 { animation-delay: 0.3s; }
+
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+                        radial-gradient(at 50% 100%, rgba(99, 102, 241, 0.05) 0px, transparent 50%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            filter: blur(60px);
+            z-index: -1;
+            animation: orb-float 20s infinite alternate linear;
+        }
+
+        @keyframes orb-float {
+            0% { transform: translate(-10%, -10%); }
+            100% { transform: translate(110%, 110%); }
+        }
+
+        .card-hover:hover {
+            transform: scale(1.02);
+            border-color: #374151;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-track {
+            background: #0B0F1A;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<div class="mesh-gradient"></div>
+<div class="orb"></div>
+<!-- TopNavBar Shared Component Integration (Modified for Dark Theme context) -->
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background overflow-x-hidden" style='font-family: "Inter", sans-serif;'>
+<div class="layout-container flex h-full grow flex-col">
+<div class="px-4 lg:px-40 flex flex-1 justify-center py-5">
+<div class="layout-content-container flex flex-col max-w-[1280px] flex-1">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-border-subtle px-4 lg:px-10 py-3 backdrop-blur-md sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-text-primary">
+<div class="size-6 text-primary">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6_319)">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</g>
+<defs>
+<clippath id="clip0_6_319"><rect fill="white" height="48" width="48"></rect></clippath>
+</defs>
+</svg>
+</div>
+<h2 class="text-text-primary text-lg font-headline-lg leading-tight tracking-[-0.015em]">PremiumBrand</h2>
+</div>
+<div class="hidden md:flex items-center gap-9">
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Product</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Features</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">Pricing</a>
+<a class="text-text-secondary hover:text-primary transition-colors text-sm font-medium leading-normal" href="#">About</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-4 lg:gap-8">
+<label class="hidden sm:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-lg h-full border border-border-subtle hover:border-border-strong transition-colors">
+<div class="text-text-muted flex border-none bg-surface-container items-center justify-center pl-4 rounded-l-lg" data-icon="search" data-size="20px" data-weight="regular">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-text-primary focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-surface-container placeholder:text-text-muted px-4 rounded-l-none pl-2 text-base font-normal leading-normal" placeholder="Search" value=""/>
+</div>
+</label>
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-all active:scale-95">
+<span class="truncate">Get Started</span>
+</button>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="A professional close-up headshot of a diverse executive with a friendly expression. The background is a soft-focus corporate office with warm, natural lighting. High-definition digital photography with a crisp, premium SaaS aesthetic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDHShpvhHQ7U1M1qPRQukjlS-IdP1s3q_Tzn1JqYMFxvUD7lgOdrSjHFJYW0By2mcuQffbmP4_Q0IyWZkiV8OPERSx1sNkOFB1yZjQ2dCCwATUza7_Q9ZMBgQNlvoGk1P5F1Ju4Z4sZrevzK9aExnW6wDigfqJhuC2rSkQ8dXpD6LCiZ5g4fPhgYI0R8mYcySC9txgi8Y5LuzzE3uK-HjHUZYKTyLkhzt_mzWbN6tczDnGrCa3ozqWz0cUOzfL3HTRRBj59kbA_UHfy");'></div>
+</div>
+</header>
+<!-- Hero Section -->
+<main class="flex flex-col">
+<div class="@container reveal">
+<div class="@[480px]:p-4 lg:p-8">
+<div class="flex min-h-[520px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-xl items-center justify-center p-8 relative overflow-hidden border border-border-subtle" data-alt="A sophisticated data visualization network on a massive curved screen inside a high-tech dark operations room. Neon blue and indigo lines of light connect floating data nodes. The atmosphere is professional, elite, and fast, reflecting a high-performance kinetic design system." style='background-image: linear-gradient(rgba(11, 15, 26, 0.8) 0%, rgba(11, 15, 26, 0.9) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuA85gM-XzStcla6ikYEdSHOrwCBhG09IGBajPMooOzSeJeB-MsidjnUIvOLORZa2WO8QaH_1smFFe4DacK5A71YWX0dH-ZYqpLvgmiPouT-k8Q6YxhqUhnWjylhJRSPEX-Tk-8F7onUmgKQuu7q6twIxga4u2cAE5R1jN2Nbzzb1F_JpIroNWzMoMYEV0n2NOIuYi84CK_vKN_-gh7kpacduOLGBCaIS8mrWfz0kTlNSIIsQim7uW7LROAmVYgrbeZHL00dAUr_yvgP");'>
+<div class="flex flex-col gap-4 text-center max-w-[800px] z-10">
+<h1 class="text-text-primary text-4xl lg:text-6xl font-headline-lg leading-tight tracking-[-0.033em] reveal reveal-delay-1">
+                                            Elevate Your Digital Experience
+                                        </h1>
+<p class="text-text-secondary text-lg font-body-lg leading-relaxed reveal reveal-delay-2">
+                                            Sophisticated design meets high-performance motion. Experience the future of web interfaces with our kinetic design system tailored for elite performance.
+                                        </p>
+</div>
+<div class="flex-wrap gap-4 flex justify-center z-10 reveal reveal-delay-3">
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold transition-all hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] active:scale-95">
+<span class="truncate">Start Now</span>
+</button>
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-surface-elevated border border-border-strong text-white text-base font-bold transition-all hover:bg-surface-container-high active:scale-95">
+<span class="truncate">Watch Demo</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Core Features -->
+<div class="px-4 lg:px-8 py-12">
+<h2 class="text-text-primary text-[28px] font-headline-lg leading-tight tracking-[-0.015em] pb-8 reveal">Core Features</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-4 p-6 bg-surface border border-border-subtle rounded-xl card-hover transition-all reveal reveal-delay-1">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden" data-alt="Abstract glowing fiber optic cables flowing with high-speed data particles in a deep space environment. The primary colors are electric indigo and violet, representing intelligent motion and rapid transmission in a dark, premium digital world." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9pVU3LeFgSdvarsRHanHdEz7kIdyffqEQmvkOkhvWpg4hDsUp9m9Uq55V9RAcRF_AGmnCGRRUEQTKG2_N9iUgbFpiBVACWmOj3-gSF4FVF6mnz98kgg_aVek5wULfMTspvEH8Fut0pL7UnRGf8_97Wtnag5LKE-0qIP9gyHq7EK7zVv8fLqYbsmw-UWwaLVewoy2P-mhzy310e4BWD6oTSE1h9YSLrg7kF10eI5toGFmBbPeMObvrhB5if5cJF8SQY-J6jEMlNPzp");'></div>
+<div>
+<p class="text-text-primary text-lg font-headline-sm leading-normal">Intelligent Motion</p>
+<p class="text-text-secondary text-sm font-body-md leading-relaxed mt-2">Fade-in and slide-up reveal animations that guide the user's eye naturally.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-6 bg-surface border border-border-subtle rounded-xl card-hover transition-all reveal reveal-delay-2">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden" data-alt="A minimalist UI interface showing dark mode dashboard layouts with clean geometric shapes and high-contrast accessibility. The lighting is low-key, emphasizing sleek slate and charcoal surfaces with vibrant indigo accents. Professional and focused atmosphere." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDg55UaQwtm34JFmciYpEpxFrBU-hK24_6R6umGx5R2pmdtFj1CMthSWwQMSbUHL3pE6JsSwYGQAkGk7SqNLVrWG6-5tE3CHB0BONdsL_uUqyu3Hwd6s9XmiYmCcyG6hRXtSm5VDogkSSzKZ59JN9wg0CZ0dDwBbkQh-5DHJ5G0YEEemKC-YZcn0elj5ENYmfI-51ntOGlX-KfoTEjG30yGKBvog9vIAdT1heyXpqxwa6UFz0g5VRUB9REBARQHxr8esxSDq0DCOPa5");'></div>
+<div>
+<p class="text-text-primary text-lg font-headline-sm leading-normal">Dark Mode Native</p>
+<p class="text-text-secondary text-sm font-body-md leading-relaxed mt-2">Optimized for high-contrast accessibility and reduced visual fatigue.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-6 bg-surface border border-border-subtle rounded-xl card-hover transition-all reveal reveal-delay-3">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg overflow-hidden" data-alt="A collage of various modern devices—smartphone, tablet, and laptop—displaying perfectly aligned responsive layouts. The scene is shot in a moody architectural space with dramatic shadows and sharp lines, showcasing seamless scaling." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBXGyyAblhMHJ1gpeBTctCmbSjllFct31dIyhAGzaiMhHdQOaBYr28dqL9cshFuwRCrO7rIgNv8Yf7ipC8cxEcEmQk5GS9feoEE8M55rvLcTU0Pa5-jsuLcqRcGNjfdhMWthWKFoVKdyULbKV-3ICUizFVPns7oaE_qd_H0EsK9LRdTtiIpLVxaAFpAYB2DsYNT129jrjDcWkQfM9uwxzcBdfaz-HIj4jccLxsPwCAbdwMrI3GVSu2ttUS50Pm9qPw-21pkc_9JvzqJ");'></div>
+<div>
+<p class="text-text-primary text-lg font-headline-sm leading-normal">Seamless Scale</p>
+<p class="text-text-secondary text-sm font-body-md leading-relaxed mt-2">Fluid and responsive layouts designed to adapt perfectly to every screen size.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Premium Performance Section -->
+<div class="flex flex-col gap-10 px-4 lg:px-8 py-16 @container reveal">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-t border-border-subtle pt-12">
+<div class="flex flex-col gap-4 max-w-[640px]">
+<h1 class="text-text-primary tracking-tight text-3xl lg:text-4xl font-headline-lg leading-tight">
+                                        Premium Performance
+                                    </h1>
+<p class="text-text-secondary text-lg font-body-lg">
+                                        Built with the latest technologies to ensure smooth scroll transitions, rapid load times, and a frictionless relationship management experience.
+                                    </p>
+</div>
+<button class="flex min-w-[180px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold transition-all hover:opacity-90 active:scale-95 w-fit">
+<span class="truncate">View Documentation</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex flex-col gap-4 p-4 bg-surface-container-low rounded-xl border border-border-subtle hover:bg-surface transition-all">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="A macro shot of clean, elegant source code displayed on a high-resolution dark monitor. Syntactic highlighting in soft purples and greens creates a professional developer-centric aesthetic, symbolizing lightweight vanilla JS logic." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuArAtMsRWup2DUUDqPwkY0Md03HBcmIOfV_eS4qKr8xnX4Dc9D92iHPd1_-6Gw_ICQ6xOy-YOLR4S23gD4BkVYjmk8nbh2APZKyTdVZI4ekfHTYcX_3lVxXTyfb_bQsHK_UceK-DiHw8Lbow20kKth9accS7sWEGbNiaiktJOOpNf6UGuCLR1Ad2hxr-Lg78AxaIsJ95kn8R1mVTt8LzP9SvhV10aDmDctUwAb67AkyFXzRbnKBQtJcarYEJ6PKYIjkfNvYPAp-FlU4");'></div>
+<div>
+<p class="text-text-primary text-base font-medium">Vanilla JS</p>
+<p class="text-text-muted text-sm mt-1">Lightweight scripting for lightning-fast interactions and fluid micro-moments.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-4 bg-surface-container-low rounded-xl border border-border-subtle hover:bg-surface transition-all">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="Digital wave patterns and sound waveforms glowing in a deep blue void. The curves are perfectly smooth, representing the 60fps cinematic fluidity of CSS keyframe animations. High-end tech visualization style." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCtsDjGbETQS-RFi8jApKzvmUrIXBZAmZ49crzgqHPUVL5uz0wwuOFd5VvGc4WzBgmAg64Uh4XPBrsMQydH-z3Iyd_zMxfEd9liPRKUkkU-YtPpg601AiI1TUMk-D4Ub3CAEOYE43KkRdVaXJg8I3j7FRbTl-BLljAp0c4d57SpqvPiy4XKEtn1tx8fl3EiIoHkEK_gZPCu9J16pyCV6IgE7DPChIsJv2jCyVqt99nogH6cWYfFRG1UmJE284oDeKizLoLomXl7WCD4");'></div>
+<div>
+<p class="text-text-primary text-base font-medium">CSS Keyframes</p>
+<p class="text-text-muted text-sm mt-1">Silky smooth 60fps animations that never drop a frame on any device.</p>
+</div>
+</div>
+<div class="flex flex-col gap-4 p-4 bg-surface-container-low rounded-xl border border-border-subtle hover:bg-surface transition-all">
+<div class="w-full bg-center bg-no-repeat aspect-square bg-cover rounded-lg" data-alt="A close-up of a powerful modern GPU heatsink with integrated RGB lighting glowing in deep indigo and purple. The scene is dark, metallic, and tech-heavy, representing high-performance hardware acceleration." style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCE6-ygXqbWvTIEL9XQde_D3ZyN_j2knMoHx77oKjLu_IROvgTFabWp9W6D3NuCvLzXdvs24B_yu5bVjKHm6eG7hNTt8FLVaxPOGS-M36V0BxvrPdawz1d6C3CK4s22iwavRPAaQ8RYjzZfJIC6n_bS0wUDPwavge0tZKNF_ksXefXgnMiLVqCgwFj6u-ffqIxyY-6fMeSTti2i8IHGS3GTDjOJFLZH4yEzcZ-Zd7UxbV_U0-aQgx6pUXICIyIql-7ovzQTwYnmQHp3");'></div>
+<div>
+<p class="text-text-primary text-base font-medium">GPU Accelerated</p>
+<p class="text-text-muted text-sm mt-1">Harnessing the power of modern hardware for efficient, crisp rendering.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="mt-auto border-t border-border-subtle py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-4 text-text-muted">
+<div class="size-5 opacity-50">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-sm font-label-sm uppercase tracking-widest">© 2024 Kinetic Precision CRM. All rights reserved.</span>
+</div>
+<div class="flex gap-6">
+<a class="text-text-muted hover:text-primary transition-colors" data-icon="facebook" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+<a class="text-text-muted hover:text-primary transition-colors" data-icon="twitter" href="#"><span class="material-symbols-outlined">retweet</span></a>
+<a class="text-text-muted hover:text-primary transition-colors" data-icon="linkedin" href="#"><span class="material-symbols-outlined">link</span></a>
+</div>
+</footer>
+</div>
+</div>
+</div>
+</div>
+<script>
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                    entry.target.style.opacity = '1';
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // Background Orb Interaction
+        document.addEventListener('mousemove', (e) => {
+            const orb = document.querySelector('.orb');
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // Subtle lag follow effect
+            orb.style.transition = 'transform 0.15s ease-out';
+            orb.style.transform = `translate(${x - 200}px, ${y - 200}px)`;
+        });
+
+        // Initialize Material Symbols state
+        document.querySelectorAll('[data-icon]').forEach(el => {
+            const iconName = el.getAttribute('data-icon');
+            const weight = el.getAttribute('data-weight');
+            const iconSpan = el.querySelector('.material-symbols-outlined');
+            if (iconSpan) {
+                iconSpan.textContent = iconName;
+                if (weight === 'fill') {
+                    iconSpan.style.fontVariationSettings = "'FILL' 1";
+                }
+            }
+        });
+    </script>
+</body></html>

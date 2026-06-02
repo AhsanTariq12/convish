@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Convish CRM - Pipeline</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#c0c1ff",
+                        "tertiary": "#adc6ff",
+                        "stage-red": "#EF4444",
+                        "secondary-fixed": "#dde2f7",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "inverse-on-surface": "#2c303c",
+                        "border-subtle": "#1F2937",
+                        "surface-elevated": "#1E2433",
+                        "stage-amber": "#F59E0B",
+                        "primary-container": "#8083ff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-primary-container": "#0d0096",
+                        "text-primary": "#F9FAFB",
+                        "inverse-primary": "#494bd6",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "secondary-fixed-dim": "#c0c6da",
+                        "text-secondary": "#9CA3AF",
+                        "surface-container-highest": "#313441",
+                        "on-primary": "#1000a9",
+                        "on-secondary": "#2a3040",
+                        "on-background": "#dfe2f2",
+                        "on-tertiary-container": "#00285d",
+                        "on-secondary-fixed": "#151b2a",
+                        "primary": "#c0c1ff",
+                        "outline-variant": "#464554",
+                        "surface-bright": "#353945",
+                        "on-secondary-fixed-variant": "#414657",
+                        "border-strong": "#374151",
+                        "tertiary-fixed": "#d8e2ff",
+                        "tertiary-container": "#4d8eff",
+                        "surface-container-low": "#171b27",
+                        "surface": "#111827",
+                        "secondary-container": "#414657",
+                        "outline": "#908fa0",
+                        "background": "#0f131e",
+                        "on-surface": "#dfe2f2",
+                        "stage-green": "#10B981",
+                        "on-error": "#690005",
+                        "surface-container": "#1b1f2b",
+                        "stage-violet": "#8B5CF6",
+                        "surface-variant": "#313441",
+                        "surface-container-high": "#262a36",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "primary-fixed": "#e1e0ff",
+                        "error": "#ffb4ab",
+                        "text-muted": "#6B7280",
+                        "surface-container-lowest": "#0a0e19",
+                        "on-secondary-container": "#afb5c8",
+                        "on-tertiary": "#002e6a",
+                        "secondary": "#c0c6da",
+                        "on-primary-fixed": "#07006c",
+                        "on-tertiary-fixed": "#001a42",
+                        "inverse-surface": "#dfe2f2",
+                        "surface-dim": "#0f131e",
+                        "stage-slate": "#64748B",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xs": "4px",
+                        "sidebar-width": "240px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "sidebar-collapsed": "60px",
+                        "container-max": "1280px",
+                        "gutter": "16px",
+                        "nav-height": "64px",
+                        "margin-desktop": "32px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter", "sans-serif"],
+                        "headline-lg": ["DM Sans", "sans-serif"],
+                        "headline-sm": ["DM Sans", "sans-serif"],
+                        "label-sm": ["Inter", "sans-serif"],
+                        "micro": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "headline-md": ["DM Sans", "sans-serif"],
+                        "body-lg": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "21px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "micro": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "mono": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["15px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600;9..40,700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-text-primary font-body-md antialiased overflow-hidden flex flex-col h-screen">
+<!-- Mobile Header -->
+<header class="flex justify-between items-center px-gutter h-nav-height bg-surface border-b border-border-subtle shrink-0">
+<div class="flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">dataset</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary font-bold tracking-tight">Convish</h1>
+</div>
+<div class="flex items-center gap-stack-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-elevated active:scale-[0.97] transition-all text-text-secondary">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-elevated overflow-hidden border border-border-subtle">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a professional individual against a neutral background. The lighting is soft and even, typical of a high-quality professional headshot. The image is cropped tightly to the face and shoulders, fitting perfectly within a circular UI element." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABT1fxJN7BtLNfiYPl7nhdU2ilGbLlTQGaTERn192icaAFm-lcDj-yDPmBJlCUZx2fIVU7bLEMdeTAOoQP6eXAx4dmi9pvuyseftI0cG-zjxUX3AGRzZGr11F4UhableujI7dke8OPigGNZGL4D13akbKcAd50jPXNx27C5so5pbD3qIeB2V6oN1SOY016US47QRijpaKH8Jue-yUtduh6aQe8p-8tM09pksXL0ObaDzJI6nU0ITehMeOiI6uXlyEfSn-uNbALvENf"/>
+</div>
+</div>
+</header>
+<!-- Stage Selector Tabs (Mobile Kanaban Replacement) -->
+<div class="bg-surface border-b border-border-subtle shrink-0">
+<div class="flex overflow-x-auto no-scrollbar px-gutter py-stack-sm gap-stack-sm items-center">
+<button class="px-4 py-2 rounded-full bg-surface-elevated border border-primary text-primary font-label-sm text-label-sm whitespace-nowrap active:scale-[0.97] transition-all shadow-sm">
+                Discovery (12)
+            </button>
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-elevated border border-transparent text-text-secondary font-label-sm text-label-sm whitespace-nowrap active:scale-[0.97] transition-all">
+                Qualified (8)
+            </button>
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-elevated border border-transparent text-text-secondary font-label-sm text-label-sm whitespace-nowrap active:scale-[0.97] transition-all">
+                Proposal (3)
+            </button>
+<button class="px-4 py-2 rounded-full bg-surface-container hover:bg-surface-elevated border border-transparent text-text-secondary font-label-sm text-label-sm whitespace-nowrap active:scale-[0.97] transition-all">
+                Negotiation (5)
+            </button>
+</div>
+</div>
+<!-- Main Content Area - Scrollable Column -->
+<main class="flex-1 overflow-y-auto bg-background p-gutter flex flex-col gap-stack-md">
+<!-- Header for Current Stage -->
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-stage-amber"></div>
+<h2 class="font-headline-sm text-headline-sm text-text-primary">Discovery</h2>
+</div>
+<span class="font-mono text-mono text-text-muted">$124,500</span>
+</div>
+<!-- Card 1 -->
+<div class="bg-surface rounded-lg border border-border-subtle p-stack-md flex flex-col gap-stack-sm active:scale-[0.99] transition-all">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-border-subtle shrink-0">
+<img alt="Contact Avatar" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a professional individual. The lighting is soft and even, typical of a high-quality professional headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGWcZarSHqzpTvYfmSXDIZbGOOgJSkEpBPsIQczNxBZXzs2QDJhd6ordg6Vt5pj4KCRavt2qGbdelV-64OF5hA2TelO_seKQcmh9jJToVbqKGvI_B-NOJFK9xBdyi6SXW2B5MPniaqqWn4irNnDoDnSIHbrzBQwFDGu3291Jo5FM_7aAn3OMpsvwungH1SnK_4IsokF3cVZ8trq8LuLmfwxLDY88GTwaVtV-zUd6qdLPtySdtZDIBQyiKch_qdlBiGNMJOEBUS5ruB"/>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-text-primary font-medium">Elena Rostova</h3>
+<p class="font-micro text-micro text-text-secondary">TechFlow Inc.</p>
+</div>
+</div>
+<div class="bg-stage-amber/15 text-stage-amber px-2 py-0.5 rounded text-[10px] font-medium tracking-wide uppercase">
+                    High Priority
+                </div>
+</div>
+<div class="mt-2">
+<h4 class="font-body-md text-body-md text-text-primary">Enterprise License Expansion</h4>
+</div>
+<div class="flex justify-between items-end mt-2 pt-3 border-t border-border-subtle">
+<div class="flex flex-col gap-1">
+<span class="font-micro text-micro text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                        Closing: Oct 24
+                    </span>
+</div>
+<div class="font-mono text-mono text-text-primary font-medium">
+                    $45,000
+                </div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface rounded-lg border border-border-subtle p-stack-md flex flex-col gap-stack-sm active:scale-[0.99] transition-all">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-border-subtle shrink-0">
+<span class="w-full h-full flex items-center justify-center font-headline-sm text-text-secondary bg-surface-elevated">JD</span>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-text-primary font-medium">James Denton</h3>
+<p class="font-micro text-micro text-text-secondary">Apex Logistics</p>
+</div>
+</div>
+<button class="text-text-muted hover:text-text-primary">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+</div>
+<div class="mt-2">
+<h4 class="font-body-md text-body-md text-text-primary">Q4 Logistics Platform Integration</h4>
+</div>
+<div class="flex justify-between items-end mt-2 pt-3 border-t border-border-subtle">
+<div class="flex flex-col gap-1">
+<span class="font-micro text-micro text-stage-red flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">error</span>
+                        Stalled - 14 days
+                    </span>
+</div>
+<div class="font-mono text-mono text-text-primary font-medium">
+                    $82,500
+                </div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface rounded-lg border border-border-subtle p-stack-md flex flex-col gap-stack-sm active:scale-[0.99] transition-all opacity-75">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden border border-border-subtle shrink-0">
+<img alt="Contact Avatar" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a professional individual. The lighting is soft and even, typical of a high-quality professional headshot." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvDj9XC3VcqzGdDw_Zvog5ek6qE5oSFPQZQxZB6X-CFLF5ecdtpXS8qkOf1cCcpABqcMENexX03akcd0vdksz6_LJeFsk_TP3KzuYUFf7eIrhq7qfoGuobjuo_wYoGL2ULcYjtS54bmqBo6uROAFj8mcE_ev5PEz44i2txlsQGyMXNPE0Yoi5iGJMBO-Jo9csdjr1KBzqd7iCnFjHEnPkatGC6vu8ai4q9n8HR8MWR7CNck3-9pEEoJftDCHH5zqJy0BpWyrm4MB8o"/>
+</div>
+<div>
+<h3 class="font-label-sm text-label-sm text-text-primary font-medium">Sarah Chen</h3>
+<p class="font-micro text-micro text-text-secondary">Nexus Retail</p>
+</div>
+</div>
+<div class="bg-surface-container-highest text-text-muted px-2 py-0.5 rounded text-[10px] font-medium tracking-wide uppercase">
+                    Low
+                </div>
+</div>
+<div class="mt-2">
+<h4 class="font-body-md text-body-md text-text-primary">Initial Consultation setup</h4>
+</div>
+<div class="flex justify-between items-end mt-2 pt-3 border-t border-border-subtle">
+<div class="flex flex-col gap-1">
+<span class="font-micro text-micro text-text-muted flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                        Call scheduled tomorrow
+                    </span>
+</div>
+<div class="font-mono text-mono text-text-primary font-medium">
+                    --
+                </div>
+</div>
+</div>
+<!-- Load More Action -->
+<button class="w-full py-stack-sm border border-dashed border-border-subtle rounded-lg text-text-secondary font-label-sm text-label-sm hover:bg-surface-elevated hover:text-text-primary transition-colors flex items-center justify-center gap-2 mt-2">
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+            Load More (9)
+        </button>
+</main>
+<!-- Floating Action Button -->
+<div class="absolute bottom-20 right-4">
+<button class="w-14 h-14 rounded-full bg-primary text-on-primary shadow-lg flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+</div>
+<!-- Mobile Bottom Navigation -->
+<nav class="bg-surface border-t border-border-subtle h-16 shrink-0 flex justify-around items-center px-2 pb-safe z-50">
+<a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-primary active:scale-[0.97] transition-all" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">dashboard</span>
+<span class="font-micro text-micro">Dash</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-primary active:scale-[0.97] transition-all" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">contacts</span>
+<span class="font-micro text-micro">Contacts</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-primary relative active:scale-[0.97] transition-all" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]" style="font-variation-settings: 'FILL' 1;">account_tree</span>
+<span class="font-micro text-micro font-medium">Pipeline</span>
+<div class="absolute top-2 right-6 w-2 h-2 rounded-full bg-stage-red border border-surface"></div>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-primary active:scale-[0.97] transition-all" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">notifications_active</span>
+<span class="font-micro text-micro">Tasks</span>
+</a>
+<a class="flex flex-col items-center justify-center w-full h-full text-text-secondary hover:text-text-primary active:scale-[0.97] transition-all" href="#">
+<span class="material-symbols-outlined mb-1 text-[24px]">settings</span>
+<span class="font-micro text-micro">Menu</span>
+</a>
+</nav>
+</body></html>

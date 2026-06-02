@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Convish - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=DM+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#c0c1ff",
+                        "tertiary": "#adc6ff",
+                        "stage-red": "#EF4444",
+                        "secondary-fixed": "#dde2f7",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "inverse-on-surface": "#2c303c",
+                        "border-subtle": "#1F2937",
+                        "surface-elevated": "#1E2433",
+                        "stage-amber": "#F59E0B",
+                        "primary-container": "#8083ff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "on-primary-container": "#0d0096",
+                        "text-primary": "#F9FAFB",
+                        "inverse-primary": "#494bd6",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "secondary-fixed-dim": "#c0c6da",
+                        "text-secondary": "#9CA3AF",
+                        "surface-container-highest": "#313441",
+                        "on-primary": "#1000a9",
+                        "on-secondary": "#2a3040",
+                        "on-background": "#dfe2f2",
+                        "on-tertiary-container": "#00285d",
+                        "on-secondary-fixed": "#151b2a",
+                        "primary": "#c0c1ff",
+                        "outline-variant": "#464554",
+                        "surface-bright": "#353945",
+                        "on-secondary-fixed-variant": "#414657",
+                        "border-strong": "#374151",
+                        "tertiary-fixed": "#d8e2ff",
+                        "tertiary-container": "#4d8eff",
+                        "surface-container-low": "#171b27",
+                        "surface": "#111827",
+                        "secondary-container": "#414657",
+                        "outline": "#908fa0",
+                        "background": "#0f131e",
+                        "on-surface": "#dfe2f2",
+                        "stage-green": "#10B981",
+                        "on-error": "#690005",
+                        "surface-container": "#1b1f2b",
+                        "stage-violet": "#8B5CF6",
+                        "surface-variant": "#313441",
+                        "surface-container-high": "#262a36",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "primary-fixed": "#e1e0ff",
+                        "error": "#ffb4ab",
+                        "text-muted": "#6B7280",
+                        "surface-container-lowest": "#0a0e19",
+                        "on-secondary-container": "#afb5c8",
+                        "on-tertiary": "#002e6a",
+                        "secondary": "#c0c6da",
+                        "on-primary-fixed": "#07006c",
+                        "on-tertiary-fixed": "#001a42",
+                        "inverse-surface": "#dfe2f2",
+                        "surface-dim": "#0f131e",
+                        "stage-slate": "#64748B",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-xs": "4px",
+                        "sidebar-width": "240px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "sidebar-collapsed": "60px",
+                        "container-max": "1280px",
+                        "gutter": "16px",
+                        "nav-height": "64px",
+                        "margin-desktop": "32px",
+                        "stack-lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-sm": ["DM Sans"],
+                        "label-sm": ["Inter"],
+                        "micro": ["Inter"],
+                        "mono": ["JetBrains Mono"],
+                        "headline-md": ["DM Sans"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "21px", "fontWeight": "400" }],
+                        "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "micro": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+                        "mono": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["15px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.text-primary');
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex items-center justify-center p-4">
+<!-- Login Container -->
+<div class="w-full max-w-md bg-surface border border-border-subtle rounded-xl p-6 sm:p-8 shadow-sm">
+<!-- Brand Header -->
+<div class="text-center mb-8">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-surface-elevated border border-border-subtle mb-4">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">
+                    bolt
+                </span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">Convish</h1>
+<p class="font-body-md text-body-md text-text-secondary">Sign in to your Elite CRM</p>
+</div>
+<!-- Form -->
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<div class="space-y-stack-md">
+<!-- Email Input -->
+<div>
+<label class="block font-label-sm text-label-sm text-text-secondary mb-2 uppercase" for="email">Email Address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted text-[20px]">
+                                mail
+                            </span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-background border border-border-subtle rounded-lg font-body-md text-body-md text-text-primary placeholder-text-muted focus:ring-1 focus:ring-primary focus:border-primary transition-colors" id="email" name="email" placeholder="name@company.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div>
+<div class="flex items-center justify-between mb-2">
+<label class="block font-label-sm text-label-sm text-text-secondary uppercase" for="password">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-inverse-primary transition-colors" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-text-muted text-[20px]">
+                                lock
+                            </span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 bg-background border border-border-subtle rounded-lg font-body-md text-body-md text-text-primary placeholder-text-muted focus:ring-1 focus:ring-primary focus:border-primary transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full flex justify-center py-2.5 px-4 border border-transparent rounded-lg shadow-sm font-headline-sm text-headline-sm text-white bg-primary-container hover:bg-inverse-primary focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-container active:scale-[0.97] transition-all bg-inverse-primary text-text-primary" type="submit">
+                Sign in to Dashboard
+            </button>
+<!-- Divider -->
+<div class="relative mt-6">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-border-subtle"></div>
+</div>
+<div class="relative flex justify-center text-sm">
+<span class="px-2 bg-surface font-label-sm text-label-sm text-text-muted uppercase">
+                        Or continue with
+                    </span>
+</div>
+</div>
+<!-- SSO Button -->
+<button class="w-full flex items-center justify-center py-2.5 px-4 border border-border-subtle rounded-lg bg-surface-elevated font-headline-sm text-headline-sm text-text-primary hover:bg-surface-bright focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-border-subtle active:scale-[0.97] transition-all mt-6" type="button">
+<svg class="w-5 h-5 mr-2" fill="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+                Google
+            </button>
+</form>
+<!-- Footer link -->
+<p class="mt-8 text-center font-body-md text-body-md text-text-secondary">
+            Don't have an account? 
+            <a class="font-headline-sm text-headline-sm text-primary hover:text-inverse-primary transition-colors" href="#">Request Access</a>
+</p>
+</div>
+</body></html>

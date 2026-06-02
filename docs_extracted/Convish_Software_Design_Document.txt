@@ -1,0 +1,319 @@
+Software Design Document (SDD)
+
+Convish - Professional Network & Outreach Manager
+
+
+
+
+
+Document Type
+
+System Architecture & Design Specification
+
+Product Name
+
+Convish
+
+Status
+
+Initial Draft (MVP)
+
+
+
+
+1. Product Overview
+
+Convish is a lightweight, operational, and AI-assisted application designed to help freelancers, founders, and professionals manage LinkedIn outreach without losing important relationships.
+
+1.1 Positioning
+
+Core Philosophy: Lightweight, minimal friction, fast, and AI-assisted.
+Non-Goals: Convish is explicitly NOT an enterprise CRM, an automated LinkedIn spam tool, or a full-scale sales platform. It is a focused operational utility.
+
+1.2 Core User Flow
+
+User signs up and authenticates.
+
+Adds a professional contact (via manual entry or LinkedIn PDF import).
+
+Assigns an outreach pipeline stage.
+
+Logs meaningful interactions (e.g., messages, calls, meetings).
+
+Sets follow-up reminders.
+
+Receives alerts to revisit the relationship.
+
+Moves the contact sequentially through the pipeline.
+
+Utilizes AI to draft highly contextual follow-up messages.
+
+2. System Architecture
+
+2.1 Technology Stack
+
+Frontend Framework: Next.js 16 (App Router, Server Components, Streaming, TypeScript)
+
+Backend & APIs: Next.js Server Actions & Route Handlers
+
+Database & Auth: Supabase (PostgreSQL, Supabase Auth, Row Level Security, Realtime, Storage)
+
+UI Ecosystem: shadcn/ui paired with Tailwind CSS
+
+AI Engine: OpenAI API
+
+Billing & Subscriptions: Stripe
+
+Transactional Email: Resend
+
+Hosting & Deployment: Vercel
+
+2.2 High-Level Data Flow
+
+Client UI → Next.js Server Actions / APIs → Business Logic Layer → Supabase Database
+
+External integrations hook into the Business Logic Layer to process AI prompt parsing, manage Stripe subscriptions, and schedule Resend reminders.
+
+3. Database Design
+
+The data layer leverages PostgreSQL via Supabase, strictly governed by Row Level Security (RLS) policies scoped to the authenticated user ID.
+
+Entity: contacts
+
+Field
+
+Data Type
+
+Description
+
+id
+
+UUID
+
+Primary Key
+
+user_id
+
+UUID
+
+Foreign Key (Auth User)
+
+full_name
+
+TEXT
+
+e.g., Mattia Caputo
+
+headline
+
+TEXT
+
+LinkedIn headline for AI context
+
+company / role
+
+TEXT
+
+Job details
+
+profile_url
+
+TEXT
+
+Extensible for Twitter/GitHub
+
+platform
+
+TEXT
+
+linkedin, twitter, email
+
+stage
+
+TEXT
+
+request_sent, connected, warm_lead, etc.
+
+tags
+
+TEXT[]
+
+e.g., [AI, SaaS, Web Dev]
+
+notes
+
+TEXT
+
+General context notes
+
+
+
+Entity: activities
+
+Field
+
+Data Type
+
+Description
+
+id
+
+UUID
+
+Primary Key
+
+contact_id
+
+UUID
+
+Foreign Key (contacts)
+
+user_id
+
+UUID
+
+Foreign Key (Auth User)
+
+type
+
+TEXT
+
+connection_sent, message, meeting, etc.
+
+content
+
+TEXT
+
+Interaction details
+
+metadata
+
+JSONB
+
+Extensible tracking attributes
+
+
+
+Entity: reminders
+
+Field
+
+Data Type
+
+Description
+
+id
+
+UUID
+
+Primary Key
+
+contact_id
+
+UUID
+
+Foreign Key (contacts)
+
+follow_up_date
+
+TIMESTAMP
+
+Execution date
+
+priority
+
+TEXT
+
+low, medium, high, urgent
+
+status
+
+TEXT
+
+pending, completed, missed
+
+Entity: subscriptions
+
+Field
+
+Data Type
+
+Description
+
+Write required attributes yourself that are important for this full stack mvp project
+
+Entity: ai_usage
+
+Field
+
+Data Type
+
+Description
+
+Write required attributes yourself that are important for this full stack mvp project
+
+
+
+Enable RLS Policy and this is the policy auth.uid() = user_id
+
+
+
+4. File Architecture
+
+A Feature-Driven approach is adopted within Next.js to ensure maintainability.
+
+src/
+├── app/
+├── components/ (shadcn)
+├── features/
+│   ├── auth/
+│   ├── contacts/
+│   ├── pipeline/
+│   ├── activities/
+│   └── ai/
+├── lib/
+├── types/
+└── hooks/
+
+
+5. Core Modules
+
+5.1 Contact Ingestion Flow
+
+Option A - Manual Entry: A frictionless form demanding only Full Name, Profile URL, and Pipeline Stage. Designed to avoid CRM bloat.
+
+Option B - LinkedIn PDF Import: User uploads a LinkedIn profile export -> Supabase Storage handles upload -> text extracted via pdf-parse -> OpenAI maps raw text into strict JSON -> UI populates form automatically.
+
+5.2 Visual Pipeline & Dashboard
+
+The dashboard provides immediate operational clarity ("What needs my attention today?"). The Pipeline View employs a Kanban methodology via dnd-kit, moving cards from Request Sent to Closed.
+
+5.3 AI Assistant
+
+AI functionality is kept narrow and highly impactful:
+
+First Message Generator: Blends user goals with the contact's title/headline.
+
+Follow-up Generator: Adjusts tone based on the lack of response (e.g., Carnegie style, 7-day polite nudge).
+
+6. Production Engineering
+
+6.1 Security
+
+Every query is scoped by `user_id = auth.uid()` via Supabase RLS. The OpenAI API is protected by rate limiting tied to an internal `ai_usage` table to halt token abuse.
+
+6.2 Billing Tiers
+
+Free: 50 contacts, basic reminders, standard pipeline tracking.
+
+Pro ($9/mo): Unlimited contacts, AI insights, email reminders, and analytics exports.
+
+6.3 Core Engineering Principles
+
+The ultimate objective is not to build a "perfect SaaS", but rather a polished, fast operational tool that users enjoy. Key principles include:
+
+Build for clarity, speed, and UX simplicity.
+
+Do NOT overengineer or introduce premature microservices.
+
+Deploy early via Vercel CI/CD.

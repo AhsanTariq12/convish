@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Detail - Convish CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-bright": "#353945",
+                        "border-subtle": "#1F2937",
+                        "primary-container": "#8083ff",
+                        "on-error": "#690005",
+                        "on-surface": "#dfe2f2",
+                        "primary-fixed": "#e1e0ff",
+                        "surface": "#111827",
+                        "text-secondary": "#9CA3AF",
+                        "stage-green": "#10B981",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#07006c",
+                        "surface-dim": "#0f131e",
+                        "stage-amber": "#F59E0B",
+                        "on-secondary": "#2a3040",
+                        "error": "#ffb4ab",
+                        "inverse-surface": "#dfe2f2",
+                        "surface-container-highest": "#313441",
+                        "stage-violet": "#8B5CF6",
+                        "tertiary-container": "#4d8eff",
+                        "background": "#0f131e",
+                        "on-secondary-fixed-variant": "#414657",
+                        "stage-red": "#EF4444",
+                        "surface-container-high": "#262a36",
+                        "on-secondary-container": "#afb5c8",
+                        "on-surface-variant": "#c7c4d7",
+                        "tertiary-fixed": "#d8e2ff",
+                        "surface-container-lowest": "#0a0e19",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "primary": "#c0c1ff",
+                        "surface-container-low": "#171b27",
+                        "secondary": "#c0c6da",
+                        "border-strong": "#374151",
+                        "surface-container": "#1b1f2b",
+                        "on-background": "#dfe2f2",
+                        "on-tertiary": "#002e6a",
+                        "stage-slate": "#64748B",
+                        "secondary-fixed-dim": "#c0c6da",
+                        "tertiary": "#adc6ff",
+                        "outline-variant": "#464554",
+                        "text-muted": "#6B7280",
+                        "tertiary-fixed-dim": "#adc6ff",
+                        "surface-elevated": "#1E2433",
+                        "outline": "#908fa0",
+                        "on-primary-container": "#0d0096",
+                        "error-container": "#93000a",
+                        "on-primary": "#1000a9",
+                        "inverse-on-surface": "#2c303c",
+                        "secondary-fixed": "#dde2f7",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "text-primary": "#F9FAFB",
+                        "secondary-container": "#414657",
+                        "on-tertiary-fixed-variant": "#004395",
+                        "on-tertiary-fixed": "#001a42",
+                        "on-tertiary-container": "#00285d",
+                        "surface-variant": "#313441",
+                        "surface-tint": "#c0c1ff",
+                        "inverse-primary": "#494bd6",
+                        "on-secondary-fixed": "#151b2a"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "0.75rem",
+                        full: "9999px"
+                    },
+                    spacing: {
+                        "container-max": "1280px",
+                        "stack-md": "16px",
+                        "stack-xs": "4px",
+                        "sidebar-collapsed": "60px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "nav-height": "64px",
+                        "sidebar-width": "240px"
+                    },
+                    fontFamily: {
+                        "headline-sm": ["DM Sans"],
+                        "mono": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["DM Sans"],
+                        "headline-md": ["DM Sans"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "micro": ["Inter"]
+                    },
+                    fontSize: {
+                        "headline-sm": ["16px", { lineHeight: "24px", fontWeight: "600" }],
+                        "mono": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+                        "body-lg": ["15px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg": ["28px", { lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "21px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }],
+                        "micro": ["11px", { lineHeight: "14px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom scrollbar for timeline */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4B5563;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Shared Component) -->
+<nav class="fixed left-0 top-0 h-full w-[240px] bg-surface border-r border-border-subtle flex flex-col py-stack-lg z-50">
+<!-- Header -->
+<div class="px-gutter mb-stack-lg flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-on-primary font-headline-sm text-headline-sm">
+                C
+            </div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Convish</h1>
+<p class="font-micro text-micro text-text-secondary uppercase tracking-wider">Elite CRM</p>
+</div>
+</div>
+<!-- CTA -->
+<div class="px-gutter mb-stack-md">
+<button class="w-full bg-primary text-on-primary font-label-sm text-label-sm py-2 px-4 rounded hover:bg-primary-fixed transition-colors duration-200 flex items-center justify-center gap-2 active:scale-95">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Add Contact
+            </button>
+</div>
+<!-- Main Nav -->
+<div class="flex-1 overflow-y-auto px-gutter flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded bg-surface-elevated text-text-primary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px] fill-icon">group</span>
+<span class="font-body-md text-body-md">Contacts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">account_tree</span>
+<span class="font-body-md text-body-md">Pipeline</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="font-body-md text-body-md">Reminders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">smart_toy</span>
+<span class="font-body-md text-body-md">AI Assistant</span>
+</a>
+</div>
+<!-- Footer Nav -->
+<div class="px-gutter mt-auto flex flex-col gap-1 pt-stack-md border-t border-border-subtle">
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded text-text-secondary hover:bg-surface-elevated transition-colors duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-body-md text-body-md">Help</span>
+</a>
+</div>
+</nav>
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 right-0 w-[calc(100%-240px)] h-nav-height bg-surface-dim border-b border-border-subtle flex items-center justify-between px-margin-desktop z-40 transition-all">
+<!-- Breadcrumb / Context -->
+<div class="flex items-center gap-2 text-text-secondary font-body-md text-body-md">
+<a class="hover:text-primary transition-colors" href="#">Contacts</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-text-primary font-medium">Eleanor Vance</span>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-stack-md">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="bg-surface border border-border-subtle rounded-full py-1.5 pl-9 pr-4 font-body-md text-body-md text-text-primary focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary w-64 transition-all" placeholder="Search..." type="text"/>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:bg-surface-elevated hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">history</span>
+</button>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:bg-surface-elevated hover:text-text-primary transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-stage-red rounded-full border-2 border-surface-dim"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-elevated border border-border-subtle overflow-hidden ml-2 cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A small circular avatar placeholder image showing initials 'U' in a soft lavender color against a dark navy background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrKEioEwbhIQb099-zLwwvAWPYHpSzJT_2zn-gAGiStGjLXRCNLb-kaS4pYcIDn5_GxV-D4P3YDUa_c_TioPWbKoVeuWFyQzO19mivlGuWMB2GJqZd7AF81yucVuqejy9qiAxZu45l_wXl2u9NKJOTXHPi07UCkV9PGRl0bR5KxHO_ZT3FmuYMPZazD8gz-U0GF9FPB5pQ_VrBn5ND4c6LXBICP78y73LzYfQiWHD__9tgTtHYPM1EZQC75CYb2BnpE5TKJhomkjh6"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width mt-nav-height min-h-screen p-margin-desktop">
+<div class="max-w-[1440px] mx-auto">
+<!-- Two Column Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-stack-lg items-start relative">
+<!-- LEFT COLUMN: Sticky Profile Panel -->
+<aside class="xl:col-span-4 lg:sticky top-[calc(64px+32px)] flex flex-col gap-stack-md">
+<!-- Primary Profile Card -->
+<div class="bg-surface border border-border-subtle rounded-xl p-stack-lg flex flex-col items-center text-center">
+<div class="relative mb-stack-md group">
+<div class="w-20 h-20 rounded-full border-2 border-surface bg-surface-elevated overflow-hidden shadow-[0_0_0_2px_#1F2937] group-hover:shadow-[0_0_0_2px_#8B5CF6] transition-all duration-300">
+<img alt="Eleanor Vance" class="w-full h-full object-cover" data-alt="A professional headshot of a woman with short dark hair, wearing a dark blazer, set against a neutral studio background. Soft, high-quality lighting typical of a corporate portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCpoMPKpP28s1Ie_-scWMYPScxi36LA5gwqVj8Pb-7FYi6Sh1bURXNdvfCcipCoBv4aWlC9Z-40vN38gmtOVb0lQDg_uzjaXY1L_lHfdl8JmwxohGw7Xfs7TlmdrUk1xI_q4cfPb-EmuPg74l2pKoIibBot-84TRhsQGV9Tzd7QkVMMSXnaShNoj6vkieq38u8Ypi_wtUdI_Jo0cWtu2RIHohqAPZErLnScoLoLHr97D4Lny5dNtjBRCTFtQMkuUo8YxFer_9LNgkq"/>
+</div>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-stage-green border-2 border-surface rounded-full"></span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-text-primary mb-1">Eleanor Vance</h2>
+<p class="font-body-md text-body-md text-text-secondary mb-stack-xs">VP of Enterprise Architecture</p>
+<p class="font-body-md text-body-md text-text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-text-muted">domain</span>
+                            Nexus Technologies
+                        </p>
+<!-- Stage Badge -->
+<div class="mt-stack-md w-full">
+<div class="bg-stage-violet/10 border border-stage-violet/20 rounded-lg p-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-stage-violet text-[20px]">target</span>
+<span class="font-label-sm text-label-sm text-stage-violet uppercase tracking-wider">Proposal Stage</span>
+</div>
+<span class="font-mono text-mono text-text-secondary">65% Win</span>
+</div>
+</div>
+<!-- Quick Actions -->
+<div class="flex items-center gap-stack-sm w-full mt-stack-lg">
+<button class="flex-1 bg-surface-elevated border border-border-subtle hover:border-border-strong text-text-primary font-label-sm text-label-sm py-2 rounded-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                                Email
+                            </button>
+<button class="flex-1 bg-surface-elevated border border-border-subtle hover:border-border-strong text-text-primary font-label-sm text-label-sm py-2 rounded-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">call</span>
+                                Call
+                            </button>
+<button class="w-10 h-10 bg-surface-elevated border border-border-subtle hover:border-border-strong rounded-lg flex items-center justify-center text-text-primary transition-all active:scale-95 shrink-0">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+</button>
+</div>
+</div>
+<!-- Contact Details Card -->
+<div class="bg-surface border border-border-subtle rounded-xl p-stack-md">
+<h3 class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider mb-stack-md">Contact Information</h3>
+<div class="flex flex-col gap-4">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-text-muted text-[18px] mt-0.5">mail</span>
+<div>
+<p class="font-body-md text-body-md text-text-primary">e.vance@nexustech.io</p>
+<p class="font-micro text-micro text-text-secondary">Work</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-text-muted text-[18px] mt-0.5">phone</span>
+<div>
+<p class="font-body-md text-body-md text-text-primary">+1 (415) 555-0198</p>
+<p class="font-micro text-micro text-text-secondary">Mobile</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-text-muted text-[18px] mt-0.5">location_on</span>
+<div>
+<p class="font-body-md text-body-md text-text-primary">San Francisco, CA</p>
+<p class="font-micro text-micro text-text-secondary">Pacific Time (PST)</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tags / Properties -->
+<div class="bg-surface border border-border-subtle rounded-xl p-stack-md">
+<div class="flex items-center justify-between mb-stack-md">
+<h3 class="font-label-sm text-label-sm text-text-muted uppercase tracking-wider">Properties</h3>
+<button class="text-primary hover:text-primary-fixed font-label-sm text-label-sm">Edit</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 rounded bg-surface-elevated border border-border-strong font-mono text-mono text-text-primary">Enterprise</span>
+<span class="px-2.5 py-1 rounded bg-surface-elevated border border-border-strong font-mono text-mono text-text-primary">High Value</span>
+<span class="px-2.5 py-1 rounded bg-surface-elevated border border-border-strong font-mono text-mono text-text-primary">Decision Maker</span>
+<span class="px-2.5 py-1 rounded border border-dashed border-border-strong text-text-muted font-mono text-mono hover:text-text-primary hover:border-text-secondary cursor-pointer transition-colors">+ Add Tag</span>
+</div>
+</div>
+</aside>
+<!-- RIGHT COLUMN: Fluid Workspace -->
+<div class="xl:col-span-8 flex flex-col gap-stack-lg">
+<!-- Tab Navigation -->
+<div class="border-b border-border-subtle flex gap-stack-lg">
+<button class="pb-3 border-b-2 border-primary font-label-sm text-label-sm text-primary uppercase tracking-wider">Activity</button>
+<button class="pb-3 border-b-2 border-transparent hover:border-border-strong font-label-sm text-label-sm text-text-muted hover:text-text-primary uppercase tracking-wider transition-colors">Notes</button>
+<button class="pb-3 border-b-2 border-transparent hover:border-border-strong font-label-sm text-label-sm text-text-muted hover:text-text-primary uppercase tracking-wider transition-colors">Emails</button>
+<button class="pb-3 border-b-2 border-transparent hover:border-border-strong font-label-sm text-label-sm text-text-muted hover:text-text-primary uppercase tracking-wider transition-colors">Tasks</button>
+</div>
+<!-- AI Assistant Panel (Bento Style) -->
+<div class="bg-gradient-to-br from-surface to-surface-elevated border border-primary/20 rounded-xl p-1 relative overflow-hidden shadow-[0_4px_24px_-12px_rgba(139,92,246,0.1)]">
+<!-- Subtle AI glow effect behind content -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="bg-surface border border-border-subtle rounded-lg p-stack-md relative z-10">
+<div class="flex items-center gap-2 mb-stack-sm">
+<span class="material-symbols-outlined text-primary text-[20px] fill-icon">auto_awesome</span>
+<h3 class="font-headline-sm text-headline-sm text-text-primary">AI Outreach Assistant</h3>
+</div>
+<p class="font-body-md text-body-md text-text-secondary mb-stack-md">Draft a personalized follow-up based on the recent "Architecture Review" meeting.</p>
+<div class="flex gap-2">
+<button class="bg-surface-elevated border border-border-strong hover:border-primary/50 text-text-primary font-body-md text-body-md py-2 px-4 rounded-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">draw</span>
+                                    Draft Email
+                                </button>
+<button class="bg-surface-elevated border border-border-strong hover:border-primary/50 text-text-primary font-body-md text-body-md py-2 px-4 rounded-md transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">forum</span>
+                                    Draft LinkedIn Message
+                                </button>
+</div>
+</div>
+</div>
+<!-- Quick Note Input -->
+<div class="bg-surface border border-border-subtle rounded-xl p-1 focus-within:border-primary transition-colors">
+<textarea class="w-full bg-transparent border-none resize-none font-body-md text-body-md text-text-primary focus:ring-0 placeholder:text-text-muted p-3" placeholder="Log a note, call, or meeting..." rows="2"></textarea>
+<div class="flex items-center justify-between px-3 pb-2">
+<div class="flex gap-1">
+<button class="p-1.5 text-text-muted hover:text-text-primary rounded hover:bg-surface-elevated transition-colors" title="Format">
+<span class="material-symbols-outlined text-[18px]">format_bold</span>
+</button>
+<button class="p-1.5 text-text-muted hover:text-text-primary rounded hover:bg-surface-elevated transition-colors" title="Attach">
+<span class="material-symbols-outlined text-[18px]">attach_file</span>
+</button>
+</div>
+<div class="flex gap-2">
+<select class="bg-surface-elevated border-none text-text-primary font-label-sm text-label-sm rounded focus:ring-0 py-1 pl-2 pr-6">
+<option>Note</option>
+<option>Call</option>
+<option>Meeting</option>
+</select>
+<button class="bg-primary text-on-primary font-label-sm text-label-sm py-1.5 px-4 rounded hover:bg-primary-fixed transition-colors">Log Activity</button>
+</div>
+</div>
+</div>
+<!-- Activity Timeline -->
+<div class="mt-stack-sm flex flex-col gap-0 relative">
+<!-- Connecting Line -->
+<div class="absolute left-6 top-4 bottom-8 w-px bg-border-subtle z-0"></div>
+<!-- Timeline Item: Meeting -->
+<div class="relative z-10 flex gap-stack-md py-stack-sm group">
+<div class="w-12 h-12 rounded-full bg-surface border border-border-subtle flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-stage-green text-[20px]">videocam</span>
+</div>
+<div class="flex-1 bg-surface border border-border-subtle rounded-xl p-stack-md group-hover:border-border-strong transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Architecture Review Meeting</h4>
+<p class="font-body-md text-body-md text-text-secondary">Logged by You</p>
+</div>
+<span class="font-mono text-mono text-text-muted">Today, 10:30 AM</span>
+</div>
+<p class="font-body-md text-body-md text-text-primary leading-relaxed">
+                                    Discussed the migration timeline for the legacy DB. Eleanor raised concerns about downtime during phase 2. Promised to send over the updated technical spec by EOD Friday.
+                                </p>
+<div class="mt-stack-sm flex gap-2">
+<span class="inline-flex items-center gap-1 bg-surface-elevated px-2 py-1 rounded text-text-secondary font-mono text-mono">
+<span class="material-symbols-outlined text-[14px]">attachment</span>
+                                        tech_spec_v2.pdf
+                                    </span>
+</div>
+</div>
+</div>
+<!-- Timeline Item: Email -->
+<div class="relative z-10 flex gap-stack-md py-stack-sm group">
+<div class="w-12 h-12 rounded-full bg-surface border border-border-subtle flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-text-secondary text-[20px]">mail</span>
+</div>
+<div class="flex-1 bg-surface border border-border-subtle rounded-xl p-stack-md group-hover:border-border-strong transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Re: Pre-meeting agenda</h4>
+<p class="font-body-md text-body-md text-text-secondary">Sent to Eleanor Vance</p>
+</div>
+<span class="font-mono text-mono text-text-muted">Yesterday, 4:15 PM</span>
+</div>
+<div class="bg-surface-elevated rounded p-3 mt-2 border border-border-subtle">
+<p class="font-body-md text-body-md text-text-secondary line-clamp-2">
+                                        Hi Eleanor, Just confirming we are still on for tomorrow at 10:30. I've attached the rough agenda. Let me know if there's anything else you'd like to cover before we dive into the phase 2 timeline.
+                                    </p>
+</div>
+</div>
+</div>
+<!-- Timeline Item: Stage Change -->
+<div class="relative z-10 flex gap-stack-md py-stack-sm">
+<div class="w-12 h-12 rounded-full bg-surface border border-border-subtle flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-stage-violet text-[20px]">sync_alt</span>
+</div>
+<div class="flex-1 flex items-center bg-transparent py-3">
+<p class="font-body-md text-body-md text-text-secondary">
+                                    Stage changed from <span class="font-medium text-text-primary">Discovery</span> to <span class="font-medium text-stage-violet">Proposal Stage</span>
+</p>
+<span class="ml-auto font-mono text-mono text-text-muted">Oct 24, 2023</span>
+</div>
+</div>
+<!-- Timeline Item: Note -->
+<div class="relative z-10 flex gap-stack-md py-stack-sm group">
+<div class="w-12 h-12 rounded-full bg-surface border border-border-subtle flex items-center justify-center shrink-0 mt-1 shadow-sm">
+<span class="material-symbols-outlined text-stage-amber text-[20px]">edit_note</span>
+</div>
+<div class="flex-1 bg-surface border border-border-subtle rounded-xl p-stack-md group-hover:border-border-strong transition-colors">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-text-primary">Discovery Call Notes</h4>
+<p class="font-body-md text-body-md text-text-secondary">Logged by You</p>
+</div>
+<span class="font-mono text-mono text-text-muted">Oct 20, 2023</span>
+</div>
+<p class="font-body-md text-body-md text-text-primary leading-relaxed">
+                                    Main pain point is the data silo between their marketing and sales instances. They are currently evaluating us against Salesforce and HubSpot. Budget is approved for Q1 implementation.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
